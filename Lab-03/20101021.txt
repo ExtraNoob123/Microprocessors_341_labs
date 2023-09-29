@@ -1,0 +1,103 @@
+;task-01
+.MODEL SMALL
+ 
+.STACK 100H
+
+.DATA 
+s1 db "Enter a number: $"  
+s2 db "even$"
+s3 db "odd$"
+
+.CODE
+MAIN PROC
+
+;iniitialize DS
+
+MOV AX,@DATA
+MOV DS,AX
+ 
+; enter your code here
+
+LEA DX, s1 
+MOV AH, 9
+INT 21H
+
+MOV AH, 1 
+INT 21H 
+
+MOV BL, 2 
+DIV BL
+   
+CMP AH, 0h
+JE newLable
+LEA DX, s3
+;MOV DL, 0aH 
+MOV AH, 9
+;MOV DL, 0dH
+
+INT 21H
+
+newLable:
+LEA DX, s2
+;MOV DL, 0aH 
+MOV AH, 9
+;MOV DL, 0dH
+INT 21H
+
+;exit to DOS
+
+MAIN ENDP
+    END MAIN
+;;;;;;;;;;;;;;;;;;;;;
+
+.MODEL SMALL
+ 
+.STACK 100H
+
+.DATA 
+s2 db "Greater$"
+s3 db "Smaller$"
+
+.CODE
+MAIN PROC
+
+;iniitialize DS
+
+MOV AX,@DATA
+MOV DS,AX
+ 
+; enter your code here
+
+
+MOV AH, 1 
+INT 21H 
+
+   
+CMP AH, 05h 
+
+JGE newLable 
+
+LEA DX, s3
+;MOV DL, 0AH 
+MOV AH, 9
+;MOV DL, 0DH    
+;JMP Exit
+
+INT 21H
+
+
+newLable:
+LEA DX, s2
+;MOV DL, 0AH 
+MOV AH, 9
+;MOV DL, 0DH
+INT 21H
+
+
+
+;exit to DOS
+
+MAIN ENDP
+    END MAIN
+
+
